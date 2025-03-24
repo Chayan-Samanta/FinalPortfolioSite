@@ -6,5 +6,11 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
+    include: ['core-js/modules/es.object.to-string.js']
   },
+  build: {
+    commonjsOptions: {
+      include: [/core-js/]
+    }
+  }
 });
