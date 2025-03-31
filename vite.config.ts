@@ -5,12 +5,20 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['lucide-react'],
-    include: ['core-js/modules/es.object.to-string.js']
+    exclude: ['lucide-react']
   },
   build: {
+    target: 'es2015',
+    sourcemap: true,
     commonjsOptions: {
-      include: [/core-js/]
+      transformMixedEsModules: true
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom']
+        }
+      }
     }
   }
 });
